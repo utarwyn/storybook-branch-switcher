@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "description": "Navigate between multiple branches directly from Storybook",
   "keywords": [
-    "storybook-addons", "storybook-addons"
+    "storybook-addons"
   ],
   "repository": {
     "type": "git",
@@ -37,7 +37,7 @@
     "build": "tsup",
     "build:watch": "npm run build -- --watch",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "run-p build:watch 'storybook --quiet'",
+    "start": "run-p build:watch \"storybook --quiet\"",
     "prerelease": "zx scripts/prepublish-checks.mjs",
     "release": "npm run build && auto shipit",
     "eject-ts": "zx scripts/eject-typescript.mjs",
@@ -51,6 +51,7 @@
     "@storybook/blocks": "7.0.0",
     "@storybook/components": "7.0.0",
     "@storybook/core-events": "7.0.0",
+    "@storybook/icons": "1.2.3",
     "@storybook/manager": "0.0.0-pr-24676-sha-214a6f84",
     "@storybook/manager-api": "7.0.0",
     "@storybook/preview": "0.0.0-pr-24676-sha-214a6f84",
@@ -83,14 +84,28 @@
     "access": "public"
   },
   "bundler": {
-    "exportEntries": ["src/index.ts"],
-    "managerEntries": ["src/manager.ts"],
-    "previewEntries": ["src/preview.ts"]
+    "exportEntries": [
+      "src/index.ts"
+    ],
+    "managerEntries": [
+      "src/manager.ts"
+    ],
+    "previewEntries": [
+      "src/preview.ts"
+    ]
   },
   "storybook": {
     "displayName": "Branch switcher",
     "supportedFrameworks": [
-      "react", "vue", "angular", "web-components", "ember", "html", "svelte", "preact", "react-native"
+      "react",
+      "vue",
+      "angular",
+      "web-components",
+      "ember",
+      "html",
+      "svelte",
+      "preact",
+      "react-native"
     ],
     "icon": "https://user-images.githubusercontent.com/321738/63501763-88dbf600-c4cc-11e9-96cd-94adadc2fd72.png"
   }
