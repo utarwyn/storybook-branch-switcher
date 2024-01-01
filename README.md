@@ -3,6 +3,8 @@
 A Storybook addon to navigate between multiple Git branches. \
 Also a command-line tool to automatically generate one instance per branch.
 
+![Screenshot of add-on in action in Storybook](./docs/screenshot.jpg)
+
 ## Installation
 
 Install the following module with npm:

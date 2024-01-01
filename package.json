@@ -1,9 +1,15 @@
 {
   "name": "storybook-branch-switcher",
   "version": "0.0.3",
-  "description": "Navigate between multiple branches directly from Storybook",
+  "description": "A Storybook addon to navigate between multiple Git branches.",
   "keywords": [
-    "storybook-addons"
+    "storybook-addons",
+    "organize",
+    "storybook",
+    "add-on",
+    "git",
+    "branches",
+    "git-branches"
   ],
   "repository": {
     "type": "git",
@@ -116,6 +122,6 @@
       "preact",
       "react-native"
     ],
-    "icon": "https://user-images.githubusercontent.com/321738/63501763-88dbf600-c4cc-11e9-96cd-94adadc2fd72.png"
+    "icon": "https://raw.githubusercontent.com/utarwyn/storybook-branch-switcher/main/docs/icon.png"
   }
 }
