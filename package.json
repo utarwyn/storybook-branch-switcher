@@ -1,5 +1,5 @@
 {
-  "name": "storybook-addon-branch-switcher",
+  "name": "storybook-branch-switcher",
   "version": "0.0.0",
   "description": "Navigate between multiple branches directly from Storybook",
   "keywords": [
@@ -7,7 +7,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/utarwyn/storybook-addon-branch-switcher"
+    "url": "https://github.com/utarwyn/storybook-branch-switcher"
   },
   "license": "MIT",
   "author": "utarwyn <maxime.malgorn@laposte.net>",
