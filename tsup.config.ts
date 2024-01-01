@@ -17,19 +17,11 @@ type BundlerConfig = {
 };
 
 export default defineConfig(async (options) => {
-  // reading the three types of entries from package.json, which has the following structure:
-  // {
-  //  ...
-  //   "bundler": {
-  //     "exportEntries": ["./src/index.ts"],
-  //     "managerEntries": ["./src/manager.ts"],
-  //     "previewEntries": ["./src/preview.ts"]
-  //   }
-  // }
   const packageJson = await readFile('./package.json', 'utf8').then(JSON.parse) as BundlerConfig;
   const {
     bundler: {
       exportEntries = [],
+      nodeEntries = [],
       managerEntries = [],
       previewEntries = [],
     } = {},
@@ -59,6 +51,21 @@ export default defineConfig(async (options) => {
       target: [...BROWSER_TARGET, ...NODE_TARGET],
       platform: "neutral",
       external: [...globalManagerPackages, ...globalPreviewPackages],
+    });
+  }
+
+  // node entries are entries meant to be used with node only
+  // they are not meant to be loaded by the manager or preview
+  if (nodeEntries.length) {
+    configs.push({
+      ...commonConfig,
+      entry: nodeEntries,
+      dts: {
+        resolve: true,
+      },
+      format: ["esm"],
+      target: NODE_TARGET,
+      platform: "node",
     });
   }
 

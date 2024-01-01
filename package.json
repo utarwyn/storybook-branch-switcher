@@ -11,6 +11,9 @@
   },
   "license": "MIT",
   "author": "utarwyn <maxime.malgorn@laposte.net>",
+  "bin": {
+    "sb-branch-switcher": "./dist/cli.mjs"
+  },
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -38,11 +41,15 @@
     "build:watch": "npm run build -- --watch",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "run-p build:watch \"storybook --quiet\"",
+    "cli": "npm run build && node ./dist/cli.mjs",
     "prerelease": "zx scripts/prepublish-checks.mjs",
     "release": "npm run build && auto shipit",
     "eject-ts": "zx scripts/eject-typescript.mjs",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
+  },
+  "dependencies": {
+    "zx": "^7.2.3"
   },
   "devDependencies": {
     "@storybook/addon-essentials": "7.0.0",
@@ -77,8 +84,7 @@
     "storybook": "7.0.0",
     "tsup": "^7.2.0",
     "typescript": "^5.2.2",
-    "vite": "^4.5.0",
-    "zx": "^7.2.3"
+    "vite": "^4.5.0"
   },
   "publishConfig": {
     "access": "public"
@@ -86,6 +92,9 @@
   "bundler": {
     "exportEntries": [
       "src/index.ts"
+    ],
+    "nodeEntries": [
+      "src/cli.ts"
     ],
     "managerEntries": [
       "src/manager.ts"
