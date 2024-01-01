@@ -1,6 +1,6 @@
 {
   "name": "storybook-branch-switcher",
-  "version": "0.0.0",
+  "version": "0.0.3",
   "description": "Navigate between multiple branches directly from Storybook",
   "keywords": [
     "storybook-addons"
