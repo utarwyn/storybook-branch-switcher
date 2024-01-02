@@ -7,7 +7,7 @@ export interface Branch {
 }
 
 export const fetchBranches = async (
-  config: ProviderConfig,
+  config?: ProviderConfig,
 ): Promise<Branch[]> => {
   const branches: Branch[] = [];
 
@@ -20,13 +20,15 @@ export const fetchBranches = async (
   });
 
   // Fetch other branches from a provider, based on configuration
-  await spinner("Fetching branches..", async () => {
-    const provider = providers.find((p) => p.isApplicable(config));
-    if (!provider) {
-      throw new Error("Cannot find a branch provider");
-    }
-    branches.push(...(await provider.fetcher(config)));
-  });
+  if (config) {
+    await spinner("Fetching branches..", async () => {
+      const provider = providers.find((p) => p.isApplicable(config));
+      if (!provider) {
+        throw new Error("Cannot find a branch provider");
+      }
+      branches.push(...(await provider.fetcher(config)));
+    });
+  }
 
   return branches;
 };

@@ -24,7 +24,7 @@ export interface Config {
   to: string;
   default_branch?: string;
   default_root?: boolean;
-  provider: ProviderConfig;
+  provider?: ProviderConfig;
 }
 
 void (async function () {
