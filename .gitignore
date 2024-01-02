@@ -1,5 +1,6 @@
 dist/
 node_modules/
+storybook-bundle/
 storybook-static/
 build-storybook.log
 .DS_Store
