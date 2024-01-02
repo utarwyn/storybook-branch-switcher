@@ -2,14 +2,12 @@ export interface BranchSwitcherState {
   list: string[];
   defaultBranch: string;
   currentBranch: string;
-  hostname?: string;
 }
 
 const DEFAULT_ADDON_STATE: BranchSwitcherState = {
   list: [],
   defaultBranch: "master",
   currentBranch: "master",
-  hostname: undefined,
 };
 
 export const state: BranchSwitcherState = Object.assign(
