@@ -10,7 +10,7 @@ export const checkoutCommit = async (commit: string): Promise<void> => {
 };
 
 export const prepareAddonState = (state: BranchSwitcherState): void => {
-  process.env.STORYBOOK_BRANCH_SWITCH_STATE = JSON.stringify(state);
+  process.env["STORYBOOK_BRANCH_SWITCHER_STATE"] = JSON.stringify(state);
 };
 
 export const buildStorybook = async (scriptName?: string): Promise<void> => {
