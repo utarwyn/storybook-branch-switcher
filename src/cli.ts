@@ -76,8 +76,8 @@ void (async function () {
     } catch (error) {
       console.error(
         "❌ ",
-        chalk.red(`Cannot build Storybook for branch ${branch.id}:`),
-        error.stderr.trim(),
+        chalk.red(`Cannot build Storybook for branch ${branch.id}: `),
+        error.stderr?.trim() ?? error,
       );
     }
   }
