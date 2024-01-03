@@ -65,8 +65,12 @@ on-premise servers).
 | repository | -                     | **(mandatory)** name of the Bitbucket repository to target |
 | url        | https://bitbucket.org | Bitbucket host to connect to                               | 
 
-If the Bitbucket instance needs an authorization, you can pass the HTTP token to the Rest API in environment
-variable `BITBUCKET_TOKEN`.
+#### Authorization (optional)
+
+If the Bitbucket instance needs an authorization, you can use one of the following options with environment variables.
+
+- Basic login details : `BITBUCKET_USERNAME` and `BITBUCKET_PASSWORD`
+- Use an access token for HTTP Rest API: `BITBUCKET_TOKEN`
 
 ### Configuration file example
 

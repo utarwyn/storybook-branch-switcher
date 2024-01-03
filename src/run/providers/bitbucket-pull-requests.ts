@@ -1,7 +1,7 @@
 import type { ProviderConfig } from "../../cli";
 import { BranchProvider } from "./index";
 
-interface BitbucketProviderConfig extends ProviderConfig {
+export interface BitbucketProviderConfig extends ProviderConfig {
   type: "bitbucket";
   url?: string;
   project: string;
@@ -13,13 +13,23 @@ const isApplicable = (config: BitbucketProviderConfig) =>
   config.project != null &&
   config.repository != null;
 
+const computeAuthorizationHeader = (): string => {
+  const token = $.env["BITBUCKET_TOKEN"];
+  if (token != null) {
+    return `Bearer ${token}`;
+  }
+  const username = $.env["BITBUCKET_USERNAME"];
+  const password = $.env["BITBUCKET_PASSWORD"];
+  if (username != null && password != null) {
+    return `Basic ${Buffer.from(`${username}:${password}`).toString("base64")}`;
+  }
+};
+
 const fetcher = async (config: BitbucketProviderConfig) => {
   const host = config.url ?? "https://bitbucket.org";
   const url = `${host}/rest/api/1.0/projects/${config.project}/repos/${config.repository}/pull-requests?state=open`;
   const response = await fetch(url, {
-    headers: {
-      Authorization: `Bearer ${$.env["BITBUCKET_TOKEN"]}`,
-    },
+    headers: { Authorization: computeAuthorizationHeader() },
   });
   if (response.ok) {
     const data = await response.json();
@@ -34,6 +44,6 @@ const fetcher = async (config: BitbucketProviderConfig) => {
   }
 };
 
-const provider: BranchProvider = { isApplicable, fetcher };
+const provider: BranchProvider<BitbucketProviderConfig> = { isApplicable, fetcher };
 
 export default provider;

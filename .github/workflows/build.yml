@@ -1,6 +1,6 @@
 name: Release
 
-on: [push]
+on: [ push ]
 
 jobs:
   release:
@@ -12,15 +12,19 @@ jobs:
       - name: Prepare repository
         run: git fetch --unshallow --tags
 
-      - name: Use Node.js 16.x
+      - name: Use Node.js 18.x
         uses: actions/setup-node@v4
         with:
-          node-version: 16.x
+          node-version: 18.x
 
-      - name: Install dependencies
+      - name: 🎷 Install dependencies
         run: npm install --ignore-scripts
 
-      - name: Create Release
+      - name: 🧪 Test
+        run: npm run test:coverage
+
+      - name: 🚀 Release
+        if: "contains(github.event.head_commit.message, 'release')" # do not release every time during 0.x
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
