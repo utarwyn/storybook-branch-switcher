@@ -43,14 +43,15 @@ Example : `sb-branch-switcher --config libs/storybook-host/.storybook/.branches.
 
 Here is the explanation of all available options:
 
-| Key            | Default        | Description                                                           |
-|----------------|----------------|-----------------------------------------------------------------------|
-| from           | -              | **(mandatory)** Where the Storybook instance is located after a build |
-| to             | -              | **(mandatory)** Where all Storybook instances will be copied          |
-| directory      | current folder | Absolute path where the project belongs                               |
-| default_branch | master         | Your default Git branch                                               |
-| default_root   | true           | Copy instance for default branch into root folder                     |
-| provider       | -              | Configuration to retrieve branches and commits to process             |
+| Key            | Default         | Description                                                           |
+|----------------|-----------------|-----------------------------------------------------------------------|
+| from           | -               | **(mandatory)** Where the Storybook instance is located after a build |
+| to             | -               | **(mandatory)** Where all Storybook instances will be copied          |
+| directory      | current folder  | Absolute path where the project belongs                               |
+| script_name    | build-storybook | Name of the NPM script that builds the Storybook                      |
+| default_branch | master          | Your default Git branch                                               |
+| default_root   | true            | Copy instance for default branch into root folder                     |
+| provider       | -               | Configuration to retrieve branches and commits to process             |
 
 ### Bitbucket (opened PRs)
 

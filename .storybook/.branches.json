@@ -1,0 +1,5 @@
+{
+  "from": "storybook-static",
+  "to": "storybook-bundle",
+  "default_root": true
+}
