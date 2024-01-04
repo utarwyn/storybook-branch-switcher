@@ -14,7 +14,7 @@ export const prepareAddonState = (state: BranchSwitcherState): void => {
 };
 
 export const buildStorybook = async (scriptName?: string): Promise<void> => {
-  await $`npm run ${scriptName ?? "build-storybook"}`;
+  await $`npm run ${scriptName ?? "build-storybook"}`.pipe(process.stdout);
 };
 
 export const prepareStorybook = async (
