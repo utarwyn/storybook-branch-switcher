@@ -1,3 +1,24 @@
+# v0.2.0 (Thu Jan 04 2024)
+
+#### 🚀 Enhancement
+
+- Add basic support for GitHub PRs [#4](https://github.com/utarwyn/storybook-branch-switcher/pull/4) ([@utarwyn](https://github.com/utarwyn))
+- Bitbucket: add support of basic authorization [#2](https://github.com/utarwyn/storybook-branch-switcher/pull/2) ([@utarwyn](https://github.com/utarwyn))
+
+#### 🐛 Bug Fix
+
+- Improve CLI log [#3](https://github.com/utarwyn/storybook-branch-switcher/pull/3) ([@utarwyn](https://github.com/utarwyn))
+
+#### ⚠️ Pushed to `main`
+
+- Prepare next release ([@utarwyn](https://github.com/utarwyn))
+
+#### Authors: 1
+
+- Maxime Malgorn ([@utarwyn](https://github.com/utarwyn))
+
+---
+
 # v0.1.0 (Wed Jan 03 2024)
 
 #### 🚀 Enhancement
