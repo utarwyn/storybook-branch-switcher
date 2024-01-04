@@ -1,6 +1,6 @@
 # Storybook Branch switcher
 
-A [Storybook 7+](https://github.com/storybookjs/storybook) addon to navigate between multiple Git branches. \
+A [Storybook 7+](https://github.com/storybookjs/storybook) addon to navigate between multiple Git branches.
 Also a command-line tool to automatically generate one instance per branch.
 
 ![Screenshot of add-on in action in Storybook](./docs/screenshot.jpg)
@@ -29,12 +29,10 @@ module.exports = {
 
 ## CLI
 
-### Usage
-
 This package exports a script called `sb-branch-switcher` which will automatically generate one Storybook instance per
 branch, based on your Git workflow.
 
-### CLI Configuration
+### Configuration
 
 The CLI needs a configuration file located at `.storybook/.branches.json` by default. But you can create this file in
 another location and pass the path to the CLI with the `--config` or `--c` argument.
@@ -53,7 +51,7 @@ Here is the explanation of all available options:
 | default_root   | true            | Copy instance for default branch into root folder                     |
 | provider       | -               | Configuration to retrieve branches and commits to process             |
 
-### Bitbucket (opened PRs)
+### With Bitbucket (opened PRs)
 
 This provider enables you to generate one Storybook instance per opened PR of a Bitbucket repository (supports cloud and
 on-premise servers).
@@ -63,7 +61,7 @@ on-premise servers).
 | type       | -                     | **(mandatory)** must be **"bitbucket"**                    |
 | project    | -                     | **(mandatory)** name of the Bitbucket project to target    |
 | repository | -                     | **(mandatory)** name of the Bitbucket repository to target |
-| url        | https://bitbucket.org | Bitbucket host to connect to                               | 
+| url        | https://bitbucket.org | Bitbucket host to connect to                               |
 
 #### Authorization (optional)
 

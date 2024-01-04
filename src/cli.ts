@@ -10,6 +10,7 @@ import {
   prepareStorybook,
 } from "./run/build";
 import { extractConfiguration, verifyGit, verifyNode } from "./run/setup";
+import { logAndWait, logError, logSuccess } from "./run/log";
 
 export interface ProviderConfig {
   type: "bitbucket";
@@ -31,7 +32,8 @@ void (async function () {
   const configPath = argv["c"] ?? argv["config"] ?? ".storybook/.branches.json";
   let config: Config;
 
-  console.log(chalk.green("😎 Verifying the workspace..."));
+  $.verbose = argv["verbose"] !== undefined;
+
   try {
     config = await extractConfiguration(configPath);
     if (config.directory) {
@@ -40,18 +42,26 @@ void (async function () {
 
     await verifyNode();
     await verifyGit();
+    logSuccess("😎 Your workspace looks good!");
   } catch (error) {
-    console.error("❌ ", chalk.red(error));
+    logError(error);
     process.exit(1);
   }
 
   const branches = await fetchBranches(config.provider);
   const defaultBranch = config.default_branch ?? branches[0].id;
 
-  console.log(chalk.green("⌛  Building the bundle..."));
+  echo(
+    `👐 Branches to build: ${chalk.cyan(
+      branches.map((branch) => branch.id).join(", "),
+    )}`,
+  );
+
   await cleanPreviousBundle(config.to);
 
   for (const branch of branches) {
+    echo`🚚 Move to the ${chalk.cyan(branch.id)} branch`;
+
     prepareAddonState({
       list: branches.map((branch) => branch.id),
       currentBranch: branch.id,
@@ -59,13 +69,11 @@ void (async function () {
     });
 
     try {
-      await spinner(`Fetching ${branch.id}...`, () =>
+      await logAndWait(`Fetching ${branch.commit}...`, () =>
         checkoutCommit(branch.commit),
       );
-      await spinner(`Building Storybook for branch ${branch.id}...`, () =>
-        buildStorybook(config.script_name),
-      );
-      await spinner(`Copying Storybook of branch ${branch.id}...`, () =>
+      await buildStorybook(config.script_name);
+      await logAndWait(`Copying files...`, () =>
         prepareStorybook(
           config.from,
           defaultBranch === branch.id && config.default_root
@@ -74,14 +82,11 @@ void (async function () {
         ),
       );
     } catch (error) {
-      console.error(
-        "❌ ",
-        chalk.red(`Cannot build Storybook for branch ${branch.id}: `),
-        error.stderr?.trim() ?? error,
-      );
+      logError(error.stderr?.trim() ?? error);
     }
   }
 
-  console.log(chalk.green("🧹 Cleaning up..."));
   await $`git checkout ${defaultBranch}`;
+
+  logSuccess("🎉 Bundle ready!");
 })();
