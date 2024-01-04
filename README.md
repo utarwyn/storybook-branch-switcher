@@ -70,6 +70,18 @@ If the Bitbucket instance needs an authorization, you can use one of the followi
 - Basic login details : `BITBUCKET_USERNAME` and `BITBUCKET_PASSWORD`
 - Use an access token for HTTP Rest API: `BITBUCKET_TOKEN`
 
+### With GitHub (opened PRs)
+
+This provider enables you to generate one Storybook instance per opened PR of a GitHub repository.
+
+| Key        | Default | Description                                             |
+|------------|---------|---------------------------------------------------------|
+| type       | -       | **(mandatory)** must be **"github"**                    |
+| owner      | -       | **(mandatory)** name of the GitHub owner                |
+| repository | -       | **(mandatory)** name of the Github repository to target |
+
+You must set `GITHUB_TOKEN` environment variable to access the GitHub.com API.
+
 ### Configuration file example
 
 ```json
