@@ -1,6 +1,7 @@
 import type { ProviderConfig } from "../../cli";
 import type { Branch } from "../branches";
 import bitbucketPullRequests from "./bitbucket-pull-requests";
+import githubPullRequests from "./github-pull-requests";
 
 export interface BranchProvider<C extends ProviderConfig> {
   isApplicable: (config: C) => boolean;
@@ -8,7 +9,8 @@ export interface BranchProvider<C extends ProviderConfig> {
 }
 
 const providers: BranchProvider<ProviderConfig>[] = [
-  bitbucketPullRequests
+  bitbucketPullRequests,
+  githubPullRequests,
 ];
 
 export default providers;
