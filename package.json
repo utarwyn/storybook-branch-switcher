@@ -13,12 +13,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/utarwyn/storybook-branch-switcher"
+    "url": "git+https://github.com/utarwyn/storybook-branch-switcher.git"
   },
   "license": "MIT",
   "author": "utarwyn <maxime.malgorn@laposte.net>",
   "bin": {
-    "sb-branch-switcher": "./dist/cli.mjs"
+    "sb-branch-switcher": "dist/cli.mjs"
   },
   "exports": {
     ".": {
