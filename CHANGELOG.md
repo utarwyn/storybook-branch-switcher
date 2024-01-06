@@ -1,3 +1,19 @@
+# v0.3.1 (Sat Jan 06 2024)
+
+#### 🐛 Bug Fix
+
+- Fix link generator to handle default branch [#5](https://github.com/utarwyn/storybook-branch-switcher/pull/5) ([@utarwyn](https://github.com/utarwyn))
+
+#### 🔩 Dependency Updates
+
+- Upgrade dev dependencies [#6](https://github.com/utarwyn/storybook-branch-switcher/pull/6) ([@utarwyn](https://github.com/utarwyn))
+
+#### Authors: 1
+
+- Maxime Malgorn ([@utarwyn](https://github.com/utarwyn))
+
+---
+
 # v0.2.0 (Thu Jan 04 2024)
 
 #### 🚀 Enhancement
