@@ -82,6 +82,17 @@ This provider enables you to generate one Storybook instance per opened PR of a 
 
 You must set `GITHUB_TOKEN` environment variable to access the GitHub.com API.
 
+### With Gitlab (opened MRs)
+
+This provider enables you to generate one Storybook instance per opened MR in a Gitlab repository.
+
+| Key        | Default | Description                                             |
+|------------|---------|---------------------------------------------------------|
+| baseUrl    | -       | **(mandatory)** baseUrl of gitlab deploy                |
+| projectId  | -       | **(mandatory)** projectId of the project                |
+
+You must set `GITLAB_TOKEN` environment variable to access the Gitlab.com API.
+
 ### Configuration file example
 
 ```json

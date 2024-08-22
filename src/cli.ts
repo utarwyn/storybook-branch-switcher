@@ -13,8 +13,7 @@ import { extractConfiguration, verifyGit, verifyNode } from "./run/setup";
 import { logAndWait, logError, logSuccess } from "./run/log";
 
 export interface ProviderConfig {
-  type: "bitbucket" | "github";
-
+  type: "bitbucket" | "github" | "gitlab";
   [key: string]: string;
 }
 
