@@ -2,7 +2,7 @@ import type { ProviderConfig } from "../../cli";
 import type { Branch } from "../branches";
 import bitbucketPullRequests from "./bitbucket-pull-requests";
 import githubPullRequests from "./github-pull-requests";
-import gitlabMrRequests from "./gitlab-merge-requests";
+import gitlabMergeRequests from "./gitlab-merge-requests";
 
 export interface BranchProvider<C extends ProviderConfig> {
   isApplicable: (config: C) => boolean;
@@ -12,7 +12,7 @@ export interface BranchProvider<C extends ProviderConfig> {
 const providers: BranchProvider<ProviderConfig>[] = [
   bitbucketPullRequests,
   githubPullRequests,
-  gitlabMrRequests
+  gitlabMergeRequests,
 ];
 
 export default providers;
