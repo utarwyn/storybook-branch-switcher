@@ -23,7 +23,7 @@ Then, add following content to `.storybook/main.js`
 
 ```js
 module.exports = {
-  addons: ['storybook-branch-switcher']
+  addons: ["storybook-branch-switcher"],
 };
 ```
 
@@ -42,7 +42,7 @@ Example : `sb-branch-switcher --config libs/storybook-host/.storybook/.branches.
 Here is the explanation of all available options:
 
 | Key            | Default         | Description                                                           |
-|----------------|-----------------|-----------------------------------------------------------------------|
+| -------------- | --------------- | --------------------------------------------------------------------- |
 | from           | -               | **(mandatory)** Where the Storybook instance is located after a build |
 | to             | -               | **(mandatory)** Where all Storybook instances will be copied          |
 | directory      | current folder  | Absolute path where the project belongs                               |
@@ -57,7 +57,7 @@ This provider enables you to generate one Storybook instance per opened PR of a 
 on-premise servers).
 
 | Key        | Default               | Description                                                |
-|------------|-----------------------|------------------------------------------------------------|
+| ---------- | --------------------- | ---------------------------------------------------------- |
 | type       | -                     | **(mandatory)** must be **"bitbucket"**                    |
 | project    | -                     | **(mandatory)** name of the Bitbucket project to target    |
 | repository | -                     | **(mandatory)** name of the Bitbucket repository to target |
@@ -75,12 +75,23 @@ If the Bitbucket instance needs an authorization, you can use one of the followi
 This provider enables you to generate one Storybook instance per opened PR of a GitHub repository.
 
 | Key        | Default | Description                                             |
-|------------|---------|---------------------------------------------------------|
+| ---------- | ------- | ------------------------------------------------------- |
 | type       | -       | **(mandatory)** must be **"github"**                    |
 | owner      | -       | **(mandatory)** name of the GitHub owner                |
 | repository | -       | **(mandatory)** name of the Github repository to target |
 
 You must set `GITHUB_TOKEN` environment variable to access the GitHub.com API.
+
+### With Gitlab (opened MRs)
+
+This provider enables you to generate one Storybook instance per opened MR in a Gitlab repository.
+
+| Key       | Default            | Description                              |
+| --------- | ------------------ | ---------------------------------------- |
+| projectId | -                  | **(mandatory)** projectId of the project |
+| url       | https://gitlab.com | Gitlab host to connect to                |
+
+You must set `GITLAB_TOKEN` environment variable to access the Gitlab.com API.
 
 ### Configuration file example
 
