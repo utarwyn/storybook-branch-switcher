@@ -1,20 +1,20 @@
+import { BranchIcon } from "@storybook/icons";
+import React, { Fragment, useCallback } from "react";
 import {
   IconButton,
   TooltipLinkList,
   WithTooltip,
-} from "@storybook/components";
-import { BranchIcon } from "@storybook/icons";
-import { styled } from "@storybook/theming";
-import React, { Fragment, useCallback } from "react";
+} from "storybook/internal/components";
+import { useParameter } from "storybook/internal/manager-api";
+import { styled } from "storybook/internal/theming";
 import type { BranchSwitcherParameters } from "../constants";
 import {
   BRANCH_SWITCHER_ID,
   DEFAULT_ADDON_PARAMETERS,
   PARAM_KEY,
 } from "../constants";
-import { generateLink } from "../util/location";
 import { BranchSwitcherState, state } from "../state";
-import { useParameter } from "@storybook/manager-api";
+import { generateLink } from "../util/location";
 
 const IconButtonLabel = styled.div(({ theme }) => ({
   fontSize: theme.typography.size.s2 - 1,
@@ -27,21 +27,24 @@ const hasMultipleBranches = (branchList: BranchSwitcherState["list"]) =>
 export const BranchSwitcher = () => {
   const { hostname } = useParameter<BranchSwitcherParameters>(
     PARAM_KEY,
-    DEFAULT_ADDON_PARAMETERS,
+    DEFAULT_ADDON_PARAMETERS
   );
   const { list, currentBranch, defaultBranch } = state;
 
-  const changeBranch = useCallback((branch) => {
-    if (branch !== currentBranch) {
-      window.parent.location = generateLink(
-        location,
-        hostname,
-        defaultBranch,
-        currentBranch,
-        branch,
-      );
-    }
-  }, [hostname, defaultBranch, currentBranch]);
+  const changeBranch = useCallback(
+    (branch: string) => {
+      if (branch !== currentBranch) {
+        window.parent.location = generateLink(
+          location,
+          hostname,
+          defaultBranch,
+          currentBranch,
+          branch
+        );
+      }
+    },
+    [hostname, defaultBranch, currentBranch]
+  );
 
   return hasMultipleBranches(list) ? (
     <Fragment>
