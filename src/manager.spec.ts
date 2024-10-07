@@ -1,9 +1,9 @@
+import { addons } from "storybook/internal/manager-api";
 import { describe, expect, test, vitest } from "vitest";
-import { addons } from "@storybook/manager-api";
-import "./manager";
 import { ADDON_ID, BRANCH_SWITCHER_ID, PARAM_KEY } from "./constants";
+import "./manager";
 
-vitest.mock("@storybook/manager-api", () => ({
+vitest.mock("storybook/internal/manager-api", () => ({
   addons: { register: vitest.fn(), add: vitest.fn() },
   types: { TOOL: "TOOL" },
 }));
@@ -12,7 +12,7 @@ describe("manager", () => {
   test("should register the addon", () => {
     expect(addons.register).toHaveBeenCalledWith(
       ADDON_ID,
-      expect.any(Function),
+      expect.any(Function)
     );
   });
 

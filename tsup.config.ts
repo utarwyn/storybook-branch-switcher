@@ -1,11 +1,15 @@
 import { defineConfig, type Options } from "tsup";
-import { readFile } from "fs/promises";
-import { globalPackages as globalManagerPackages } from "@storybook/manager/globals";
-import { globalPackages as globalPreviewPackages } from "@storybook/preview/globals";
+import { readFile } from "node:fs/promises";
+import { globalPackages as globalManagerPackages } from "storybook/internal/manager/globals";
+import { globalPackages as globalPreviewPackages } from "storybook/internal/preview/globals";
 
 // The current browsers supported by Storybook v7
-const BROWSER_TARGET: Options['target'] = ["chrome100", "safari15", "firefox91"];
-const NODE_TARGET: Options['target'] = ["node16"];
+const BROWSER_TARGET: Options["target"] = [
+  "chrome100",
+  "safari15",
+  "firefox91",
+];
+const NODE_TARGET: Options["target"] = ["node18"];
 
 type BundlerConfig = {
   bundler?: {
@@ -17,13 +21,25 @@ type BundlerConfig = {
 };
 
 export default defineConfig(async (options) => {
-  const packageJson = await readFile('./package.json', 'utf8').then(JSON.parse) as BundlerConfig;
+  // reading the three types of entries from package.json, which has the following structure:
+  // {
+  //  ...
+  //   "bundler": {
+  //     "exportEntries": ["./src/index.ts"],
+  //     "managerEntries": ["./src/manager.ts"],
+  //     "previewEntries": ["./src/preview.ts"]
+  //     "nodeEntries": ["./src/preset.ts"]
+  //   }
+  // }
+  const packageJson = (await readFile("./package.json", "utf8").then(
+    JSON.parse
+  )) as BundlerConfig;
   const {
     bundler: {
       exportEntries = [],
-      nodeEntries = [],
       managerEntries = [],
       previewEntries = [],
+      nodeEntries = [],
     } = {},
   } = packageJson;
 
@@ -32,7 +48,7 @@ export default defineConfig(async (options) => {
     minify: !options.watch,
     treeshake: true,
     sourcemap: true,
-    clean: true,
+    clean: options.watch ? false : true,
   };
 
   const configs: Options[] = [];
@@ -47,25 +63,10 @@ export default defineConfig(async (options) => {
       dts: {
         resolve: true,
       },
-      format: ["esm", 'cjs'],
+      format: ["esm", "cjs"],
       target: [...BROWSER_TARGET, ...NODE_TARGET],
       platform: "neutral",
       external: [...globalManagerPackages, ...globalPreviewPackages],
-    });
-  }
-
-  // node entries are entries meant to be used with node only
-  // they are not meant to be loaded by the manager or preview
-  if (nodeEntries.length) {
-    configs.push({
-      ...commonConfig,
-      entry: nodeEntries,
-      dts: {
-        resolve: true,
-      },
-      format: ["esm"],
-      target: NODE_TARGET,
-      platform: "node",
     });
   }
 
@@ -85,15 +86,31 @@ export default defineConfig(async (options) => {
 
   // preview entries are entries meant to be loaded into the preview iframe
   // they'll have preview-specific packages externalized and they won't be usable in node
-  // they won't have types generated for them as they're usually loaded automatically by Storybook
+  // they'll have types generated for them so they can be imported when setting up Portable Stories
   if (previewEntries.length) {
     configs.push({
       ...commonConfig,
       entry: previewEntries,
-      format: ["esm"],
+      dts: {
+        resolve: true,
+      },
+      format: ["esm", "cjs"],
       target: BROWSER_TARGET,
       platform: "browser",
       external: globalPreviewPackages,
+    });
+  }
+
+  // node entries are entries meant to be used in node-only
+  // this is useful for presets, which are loaded by Storybook when setting up configurations
+  // they won't have types generated for them as they're usually loaded automatically by Storybook
+  if (nodeEntries.length) {
+    configs.push({
+      ...commonConfig,
+      entry: nodeEntries,
+      format: ["esm"],
+      target: NODE_TARGET,
+      platform: "node",
     });
   }
 
