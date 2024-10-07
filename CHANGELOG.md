@@ -1,3 +1,15 @@
+# v0.4.1 (Mon Oct 07 2024)
+
+#### 🐛 Bug Fix
+
+- Fix CLI [#12](https://github.com/utarwyn/storybook-branch-switcher/pull/12) ([@utarwyn](https://github.com/utarwyn))
+
+#### Authors: 1
+
+- Maxime Malgorn ([@utarwyn](https://github.com/utarwyn))
+
+---
+
 # v0.4.0 (Mon Oct 07 2024)
 
 #### 🚀 Enhancement
