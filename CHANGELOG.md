@@ -1,3 +1,20 @@
+# v0.4.0 (Mon Oct 07 2024)
+
+#### 🚀 Enhancement
+
+- Bump Storybook from 7.6.7 to 8.3.5 [#10](https://github.com/utarwyn/storybook-branch-switcher/pull/10) ([@utarwyn](https://github.com/utarwyn))
+
+#### 🐛 Bug Fix
+
+- Adding GitLab provider [#8](https://github.com/utarwyn/storybook-branch-switcher/pull/8) (mteagle@reliaquest.com [@utarwyn](https://github.com/utarwyn))
+
+#### Authors: 2
+
+- Maxime Malgorn ([@utarwyn](https://github.com/utarwyn))
+- Michael Teagle ([@mkteagle](https://github.com/mkteagle))
+
+---
+
 # v0.3.1 (Sat Jan 06 2024)
 
 #### 🐛 Bug Fix
