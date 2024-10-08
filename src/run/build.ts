@@ -6,7 +6,8 @@ export const cleanPreviousBundle = async (directory: string): Promise<void> => {
 
 export const checkoutCommit = async (commit: string): Promise<void> => {
   await $`git fetch origin`;
-  await $`git checkout ${commit} --recurse-submodules`;
+  await $`git checkout ${commit}`;
+  await $`git submodule update --init`;
 };
 
 export const prepareAddonState = (state: BranchSwitcherState): void => {
