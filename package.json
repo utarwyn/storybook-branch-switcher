@@ -47,6 +47,7 @@
     "clean": "rimraf ./dist",
     "prebuild": "npm run clean",
     "build": "tsup",
+    "prepare": "npm run build",
     "build:watch": "npm run build -- --watch",
     "test": "vitest",
     "test:coverage": "vitest --coverage",
