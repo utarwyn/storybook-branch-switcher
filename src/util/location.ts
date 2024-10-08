@@ -9,11 +9,7 @@ export const generateLink = (
   let path: string;
 
   if (target !== def) {
-    if (current === def) {
-      path = `/${target}/`;
-    } else {
-      path = location.pathname.replace(current, target);
-    }
+    path = `/${target}/`;
   } else {
     path = "/";
   }

@@ -37,10 +37,27 @@ describe("location", () => {
       ${"master"} | ${"PR-6"}   | ${"master"} | ${"/"}       | ${"target is the default branch"}
       ${"master"} | ${"PR-6"}   | ${"PR-7"}   | ${"/PR-7/"}  | ${"target is neither the current branch nor the default one"}
     `(
-      "should replace path if $description",
+      "should replace root path if $description",
       ({ def, current, target, expectedPath }) => {
         const loc = { ...location, pathname: `/${current}/` };
         expect(generateLink(loc, null, def, current, target)).toBe(
+          `https://company.design:443${expectedPath}`,
+        );
+      },
+    );
+
+    test.each`
+      def         | current     | target      | expectedPath         | description
+      ${"master"} | ${"master"} | ${"master"} | ${"/subpath/"}       | ${"target is the current branch"}
+      ${"master"} | ${"master"} | ${"PR-6"}   | ${"/subpath/PR-6/"}  | ${"target is not the default branch"}
+      ${"master"} | ${"PR-6"}   | ${"master"} | ${"/subpath/"}       | ${"target is the default branch"}
+      ${"master"} | ${"PR-6"}   | ${"PR-7"}   | ${"/subpath/PR-7/"}  | ${"target is neither the current branch nor the default one"}
+    `(
+      "should replace subpath via targetHost if $description",
+      ({ def, current, target, expectedPath }) => {
+        const loc = { ...location, pathname: `/subpath/${current}` };
+        const targetHost = "company.design:443/subpath"
+        expect(generateLink(loc, targetHost, def, current, target)).toBe(
           `https://company.design:443${expectedPath}`,
         );
       },
