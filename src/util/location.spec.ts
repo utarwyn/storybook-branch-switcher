@@ -12,20 +12,20 @@ describe("location", () => {
     } as Location;
 
     test("should use current host by default", () => {
-      expect(generateLink(location, null, null, null, null)).toBe(
+      expect(generateLink(location, null, null, null)).toBe(
         "https://company.design:443/",
       );
     });
 
     test("should use targetHost if provided", () => {
-      expect(generateLink(location, "localhost:3000", null, null, null)).toBe(
+      expect(generateLink(location, "localhost:3000", null, null)).toBe(
         "https://localhost:3000/",
       );
     });
 
     test("should pass same search and hash params to target", () => {
       const loc = { ...location, search: "?a=b", hash: "#c=d" };
-      expect(generateLink(loc, null, null, null, null)).toBe(
+      expect(generateLink(loc, null, null, null)).toBe(
         "https://company.design:443/?a=b#c=d",
       );
     });
@@ -40,7 +40,7 @@ describe("location", () => {
       "should replace root path if $description",
       ({ def, current, target, expectedPath }) => {
         const loc = { ...location, pathname: `/${current}/` };
-        expect(generateLink(loc, null, def, current, target)).toBe(
+        expect(generateLink(loc, null, def, target)).toBe(
           `https://company.design:443${expectedPath}`,
         );
       },
@@ -57,7 +57,7 @@ describe("location", () => {
       ({ def, current, target, expectedPath }) => {
         const loc = { ...location, pathname: `/subpath/${current}` };
         const targetHost = "company.design:443/subpath"
-        expect(generateLink(loc, targetHost, def, current, target)).toBe(
+        expect(generateLink(loc, targetHost, def, target)).toBe(
           `https://company.design:443${expectedPath}`,
         );
       },

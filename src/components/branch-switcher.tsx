@@ -38,7 +38,6 @@ export const BranchSwitcher = () => {
           location,
           hostname,
           defaultBranch,
-          currentBranch,
           branch
         );
       }

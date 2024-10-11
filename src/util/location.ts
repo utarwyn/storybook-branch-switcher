@@ -2,7 +2,6 @@ export const generateLink = (
   location: Location,
   targetHost: string,
   def: string,
-  current: string,
   target: string,
 ): string => {
   const hostname = targetHost || `${location.hostname}:${location.port}`;
