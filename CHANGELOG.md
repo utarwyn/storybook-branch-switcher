@@ -1,3 +1,19 @@
+# v0.5.0 (Sun Oct 13 2024)
+
+#### 🚀 Enhancement
+
+- Added flag to checkout to update submodules when present. [#14](https://github.com/utarwyn/storybook-branch-switcher/pull/14) ([@patcon](https://github.com/patcon))
+
+#### 🐛 Bug Fix
+
+- Add support for subpaths [#16](https://github.com/utarwyn/storybook-branch-switcher/pull/16) ([@patcon](https://github.com/patcon))
+
+#### Authors: 1
+
+- Patrick Connolly ([@patcon](https://github.com/patcon))
+
+---
+
 # v0.4.1 (Mon Oct 07 2024)
 
 #### 🐛 Bug Fix
