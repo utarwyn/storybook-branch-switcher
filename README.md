@@ -108,3 +108,61 @@ You must set `GITLAB_TOKEN` environment variable to access the Gitlab.com API.
   }
 }
 ```
+
+## FAQ
+
+### How do I host my storybook in a subpath? (e.g. GitHub Pages)
+
+Out-of-the-box this addon supports hosting Storybook at the root path, but
+you'll need some extra setup if you'd like to host a storybook in a subpath.
+
+| ✅ Out-of-the-box: root path | 🛠️ Requires setup: subpaths                 |
+|:-----------------------------|:--------------------------------------------|
+| `http://localhost:6006`      | `http://localhost:6006/some/path`           |
+| `https://sub.example.com`   | `https://your-username.github.io/your-repo` |
+
+Just make these changes in your `.storybook/preview.js` file, in this example,
+publishing to GitHub Pages.
+
+<details>
+<summary>Click for example configuration...</summary>
+
+```diff
+diff --git a/.storybook/preview.js b/.storybook/preview.js
+index 6731af8..7587cb6 100644
+--- a/.storybook/preview.js
++++ b/.storybook/preview.js
+@@ -1,4 +1,5 @@
+ /** @type { import('@storybook/react').Preview } */
+ const preview = {
+   parameters: {
+     controls: {
+@@ -10,4 +11,18 @@ const preview = {
+   },
+ };
+ 
++/* Any envvar prefixed with STORYBOOK_ will be available in the built storybook, ie. preview.js
++ * See: https://storybook.js.org/docs/configure/environment-variables
++ *
++ * Set STORYBOOK_PUBLISH_FOR_WEB=true in your build environment, along with the
++ * domain and path you'd like to host from.
++ */
++if (process.env["STORYBOOK_PUBLISH_FOR_WEB"]) {
++  preview.parameters = {
++    branches: {
++      hostname: `your-username.github.io/your-repo`,
++    }
++  }
++}
++
+ export default preview;
+```
+</details>
+
+You'll then just need to set `STORYBOOK_PUBLISH_FOR_WEB=true` in whatever build
+environment you run the `sb-branch-switcher` command.
+
+To test locally:
+1. set `hostname` in `.storybook/preview.js` to `localhost:6006/storybook-bundle`,
+2. build via `STORYBOOK_PUBLISH_FOR_WEB=true sb-branch-switcher <other opts>`
+3. run `npx http-server dist` to serve your local storybook one subpath deeper.
