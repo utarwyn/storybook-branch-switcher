@@ -30,7 +30,7 @@ module.exports = {
 ## CLI
 
 This package exports a script called `sb-branch-switcher` which will automatically generate one Storybook instance per
-branch, based on your Git workflow.
+branch, based on your Git workflow. (We support Git submodules, and any checkouts will only run in a clean workspace.)
 
 ### Configuration
 
