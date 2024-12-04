@@ -79,6 +79,7 @@ This provider enables you to generate one Storybook instance per opened PR of a 
 | type       | -       | **(mandatory)** must be **"github"**                    |
 | owner      | -       | **(mandatory)** name of the GitHub owner                |
 | repository | -       | **(mandatory)** name of the Github repository to target |
+| url        | https://api.github.com | Github host to connect                   |
 
 You must set `GITHUB_TOKEN` environment variable to access the GitHub.com API.
 
