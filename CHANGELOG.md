@@ -1,3 +1,16 @@
+# v0.6.0 (Wed Dec 04 2024)
+
+#### 🚀 Enhancement
+
+- Add GitHub config url [#18](https://github.com/utarwyn/storybook-branch-switcher/pull/18) (justin.akin@mlb.com [@utarwyn](https://github.com/utarwyn))
+
+#### Authors: 2
+
+- Justin Akin ([@actionakin](https://github.com/actionakin))
+- Maxime Malgorn ([@utarwyn](https://github.com/utarwyn))
+
+---
+
 # v0.5.0 (Sun Oct 13 2024)
 
 #### 🚀 Enhancement
