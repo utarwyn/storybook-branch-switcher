@@ -74,11 +74,12 @@ If the Bitbucket instance needs an authorization, you can use one of the followi
 
 This provider enables you to generate one Storybook instance per opened PR of a GitHub repository.
 
-| Key        | Default | Description                                             |
-| ---------- | ------- | ------------------------------------------------------- |
-| type       | -       | **(mandatory)** must be **"github"**                    |
-| owner      | -       | **(mandatory)** name of the GitHub owner                |
-| repository | -       | **(mandatory)** name of the Github repository to target |
+| Key        | Default                | Description                                             |
+| ---------- | ---------------------- | ------------------------------------------------------- |
+| type       | -                      | **(mandatory)** must be **"github"**                    |
+| owner      | -                      | **(mandatory)** name of the GitHub owner                |
+| repository | -                      | **(mandatory)** name of the Github repository to target |
+| url        | https://api.github.com | Github host to connect                                  |
 
 You must set `GITHUB_TOKEN` environment variable to access the GitHub.com API.
 
@@ -117,9 +118,9 @@ Out-of-the-box this addon supports hosting Storybook at the root path, but
 you'll need some extra setup if you'd like to host a storybook in a subpath.
 
 | ✅ Out-of-the-box: root path | 🛠️ Requires setup: subpaths                 |
-|:-----------------------------|:--------------------------------------------|
+| :--------------------------- | :------------------------------------------ |
 | `http://localhost:6006`      | `http://localhost:6006/some/path`           |
-| `https://sub.example.com`   | `https://your-username.github.io/your-repo` |
+| `https://sub.example.com`    | `https://your-username.github.io/your-repo` |
 
 Just make these changes in your `.storybook/preview.js` file, in this example,
 publishing to GitHub Pages.
@@ -140,7 +141,7 @@ index 6731af8..7587cb6 100644
 @@ -10,4 +11,18 @@ const preview = {
    },
  };
- 
+
 +/* Any envvar prefixed with STORYBOOK_ will be available in the built storybook, ie. preview.js
 + * See: https://storybook.js.org/docs/configure/environment-variables
 + *
@@ -157,12 +158,14 @@ index 6731af8..7587cb6 100644
 +
  export default preview;
 ```
+
 </details>
 
 You'll then just need to set `STORYBOOK_PUBLISH_FOR_WEB=true` in whatever build
 environment you run the `sb-branch-switcher` command.
 
 To test locally:
+
 1. set `hostname` in `.storybook/preview.js` to `localhost:6006/storybook-bundle`,
 2. build via `STORYBOOK_PUBLISH_FOR_WEB=true sb-branch-switcher <other opts>`
 3. run `npx http-server dist` to serve your local storybook one subpath deeper.
