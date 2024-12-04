@@ -3,6 +3,7 @@ import type { BranchProvider } from "./index";
 
 export interface GithubProviderConfig extends ProviderConfig {
   type: "github";
+  url?: string;
   owner: string;
   repository: string;
 }
@@ -11,7 +12,8 @@ const isApplicable = (config: GithubProviderConfig) =>
   config.type === "github" && config.owner != null && config.repository != null;
 
 const fetcher = async (config: GithubProviderConfig) => {
-  const url = `https://api.github.com/repos/${config.owner}/${config.repository}/pulls?state=open`;
+  const host = config.url ?? "https://api.github.com";
+  const url = `${host}/repos/${config.owner}/${config.repository}/pulls?state=open`;
   const response = await fetch(url, {
     headers: {
       Accept: "Accept: application/vnd.github+json",
