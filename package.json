@@ -94,6 +94,9 @@
   "peerDependencies": {
     "storybook": "^8.0.0 || ^9.0.0-0 || ^10.0.0-0"
   },
+  "engines": {
+    "node": ">=20.19.0"
+  },
   "publishConfig": {
     "access": "public"
   },

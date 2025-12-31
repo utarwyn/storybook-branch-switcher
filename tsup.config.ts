@@ -9,7 +9,7 @@ const BROWSER_TARGET: Options["target"] = [
   "safari15",
   "firefox91",
 ];
-const NODE_TARGET: Options["target"] = ["node18"];
+const NODE_TARGET: Options["target"] = ["node20"];
 
 type BundlerConfig = {
   bundler?: {
