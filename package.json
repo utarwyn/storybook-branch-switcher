@@ -19,22 +19,22 @@
   "license": "MIT",
   "author": "utarwyn <maxime.malgorn@laposte.net>",
   "bin": {
-    "sb-branch-switcher": "dist/cli.mjs"
+    "sb-branch-switcher": "dist/cli.js"
   },
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs"
+      "import": "./dist/index.js"
     },
     "./preview": {
       "types": "./dist/preview.d.ts",
-      "import": "./dist/preview.mjs"
+      "import": "./dist/preview.js"
     },
-    "./manager": "./dist/manager.mjs",
+    "./manager": "./dist/manager.js",
     "./package.json": "./package.json"
   },
-  "main": "./dist/index.mjs",
-  "module": "./dist/index.mjs",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist/**/*",
@@ -51,7 +51,7 @@
     "test": "vitest",
     "test:coverage": "vitest --coverage",
     "start": "run-p build:watch \"storybook --quiet\"",
-    "cli": "npm run build && node ./dist/cli.mjs",
+    "cli": "npm run build && node ./dist/cli.js",
     "prerelease": "zx scripts/prepublish-checks.mjs",
     "release": "npm run build && auto shipit",
     "eject-ts": "zx scripts/eject-typescript.mjs",

@@ -1,6 +1,6 @@
 # Storybook Branch switcher
 
-A [Storybook 7+](https://github.com/storybookjs/storybook) addon to navigate between multiple Git branches.
+A [Storybook 10+](https://github.com/storybookjs/storybook) addon to navigate between multiple Git branches.
 Also a command-line tool to automatically generate one instance per branch.
 
 ![Screenshot of add-on in action in Storybook](./docs/screenshot.jpg)

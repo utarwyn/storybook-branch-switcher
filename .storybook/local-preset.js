@@ -8,11 +8,11 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 function previewAnnotations(entry = []) {
-  return [...entry, resolve(__dirname, "../dist/preview.mjs")];
+  return [...entry, resolve(__dirname, "../dist/preview.js")];
 }
 
 function managerEntries(entry = []) {
-  return [...entry, resolve(__dirname, "../dist/manager.mjs")];
+  return [...entry, resolve(__dirname, "../dist/manager.js")];
 }
 
 export { managerEntries, previewAnnotations };
