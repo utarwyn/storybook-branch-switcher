@@ -2,23 +2,23 @@ name: Release
 
 on: [push]
 
-permissions:
-  id-token: write
-
 jobs:
   release:
     runs-on: ubuntu-latest
     if: "!contains(github.event.head_commit.message, 'ci skip') && !contains(github.event.head_commit.message, 'skip ci')"
+    permissions:
+      contents: write
+      id-token: write
     steps:
-      - uses: actions/checkout@v4
-
-      - name: Prepare repository
-        run: git fetch --unshallow --tags
-
-      - name: Use Node.js 20.x
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v6
         with:
-          node-version: 20.x
+          fetch-depth: 0
+
+      - name: Use Node.js 22.x
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22.x
+          registry-url: https://registry.npmjs.org
 
       - name: 🎷 Install dependencies
         run: npm install --ignore-scripts
@@ -26,12 +26,11 @@ jobs:
       - name: 🧪 Test
         run: npm run test:coverage
 
-      - name: 🔥 Try a Storybook build
+      - name: 🔥 Build
         run: npm run build && npm run build-storybook
 
       - name: 🚀 Release
+        run: npm run release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: |
-          npm run release
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
