@@ -1,3 +1,16 @@
+# v0.6.1 (Wed Dec 31 2025)
+
+#### 🐛 Bug Fix
+
+- Migrate to ESM-only for Storybook 10 compatibility [#20](https://github.com/utarwyn/storybook-branch-switcher/pull/20) ([@Copilot](https://github.com/Copilot) [@utarwyn](https://github.com/utarwyn))
+
+#### Authors: 2
+
+- [@Copilot](https://github.com/Copilot)
+- Maxime Malgorn ([@utarwyn](https://github.com/utarwyn))
+
+---
+
 # v0.6.0 (Wed Dec 04 2024)
 
 #### 🚀 Enhancement
