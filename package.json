@@ -1,6 +1,6 @@
 {
   "name": "storybook-branch-switcher",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "A Storybook addon to navigate between multiple Git branches.",
   "type": "module",
   "keywords": [
