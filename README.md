@@ -3,7 +3,7 @@
 A [Storybook 8+](https://github.com/storybookjs/storybook) addon to navigate between multiple Git branches.
 Also a command-line tool to automatically generate one instance per branch.
 
-> **Note:** This addon uses ESM-only format and is compatible with Storybook 8+ and the upcoming Storybook 10.
+> **Note:** This addon uses ESM-only format and is compatible with Storybook 8, 9, and 10.
 
 ![Screenshot of add-on in action in Storybook](./docs/screenshot.jpg)
 
