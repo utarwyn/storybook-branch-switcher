@@ -2,6 +2,7 @@
   "name": "storybook-branch-switcher",
   "version": "0.6.0",
   "description": "A Storybook addon to navigate between multiple Git branches.",
+  "type": "module",
   "keywords": [
     "storybook-addons",
     "organize",
@@ -23,19 +24,17 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.js"
+      "import": "./dist/index.mjs"
     },
     "./preview": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/preview.mjs",
-      "require": "./dist/preview.js"
+      "types": "./dist/preview.d.ts",
+      "import": "./dist/preview.mjs"
     },
     "./manager": "./dist/manager.mjs",
     "./package.json": "./package.json"
   },
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
+  "main": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
   "types": "dist/index.d.ts",
   "files": [
     "dist/**/*",
@@ -64,13 +63,13 @@
     "zx": "^8.1.9"
   },
   "devDependencies": {
-    "@storybook/addon-essentials": "8.3.5",
-    "@storybook/addon-interactions": "8.3.5",
-    "@storybook/addon-links": "8.3.5",
-    "@storybook/blocks": "8.3.5",
-    "@storybook/react": "8.3.5",
-    "@storybook/react-vite": "8.3.5",
-    "@storybook/test": "8.3.5",
+    "@storybook/addon-essentials": "^10.0.0",
+    "@storybook/addon-interactions": "^10.0.0",
+    "@storybook/addon-links": "^10.0.0",
+    "@storybook/blocks": "^10.0.0",
+    "@storybook/react": "^10.0.0",
+    "@storybook/react-vite": "^10.0.0",
+    "@storybook/test": "^10.0.0",
     "@types/node": "^20.16.10",
     "@types/react": "^18.3.11",
     "@types/react-dom": "^18.3.0",
@@ -86,14 +85,14 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "rimraf": "^6.0.1",
-    "storybook": "8.3.5",
+    "storybook": "^10.0.0",
     "tsup": "^8.3.0",
     "typescript": "^5.6.2",
     "vite": "^5.4.8",
     "vitest": "^2.1.2"
   },
   "peerDependencies": {
-    "storybook": ">=7"
+    "storybook": "^10.0.0"
   },
   "publishConfig": {
     "access": "public"

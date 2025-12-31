@@ -1,15 +1,18 @@
 /**
  * to load the built addon in this test Storybook
  */
+import { fileURLToPath } from "node:url";
+import { dirname, resolve } from "node:path";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
 function previewAnnotations(entry = []) {
-  return [...entry, require.resolve("../dist/preview.mjs")];
+  return [...entry, resolve(__dirname, "../dist/preview.mjs")];
 }
 
 function managerEntries(entry = []) {
-  return [...entry, require.resolve("../dist/manager.mjs")];
+  return [...entry, resolve(__dirname, "../dist/manager.mjs")];
 }
 
-module.exports = {
-  managerEntries,
-  previewAnnotations,
-};
+export { managerEntries, previewAnnotations };
