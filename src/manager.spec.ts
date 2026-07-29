@@ -1,9 +1,9 @@
-import { addons } from "storybook/internal/manager-api";
+import { addons } from "storybook/manager-api";
 import { describe, expect, test, vitest } from "vitest";
 import { ADDON_ID, BRANCH_SWITCHER_ID, PARAM_KEY } from "./constants";
 import "./manager";
 
-vitest.mock("storybook/internal/manager-api", () => ({
+vitest.mock("storybook/manager-api", () => ({
   addons: { register: vitest.fn(), add: vitest.fn() },
   types: { TOOL: "TOOL" },
 }));

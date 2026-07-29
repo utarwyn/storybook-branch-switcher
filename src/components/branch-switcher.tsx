@@ -5,8 +5,8 @@ import {
   TooltipLinkList,
   WithTooltip,
 } from "storybook/internal/components";
-import { useParameter } from "storybook/internal/manager-api";
-import { styled } from "storybook/internal/theming";
+import { useParameter } from "storybook/manager-api";
+import { styled, type Theme } from "storybook/theming";
 import type { BranchSwitcherParameters } from "../constants";
 import {
   BRANCH_SWITCHER_ID,
@@ -16,8 +16,8 @@ import {
 import { BranchSwitcherState, state } from "../state";
 import { generateLink } from "../util/location";
 
-const IconButtonLabel = styled.div(({ theme }) => ({
-  fontSize: theme.typography.size.s2 - 1,
+const IconButtonLabel = styled.div<{}>((props: { theme: Theme }) => ({
+  fontSize: props.theme.typography.size.s2 - 1,
   marginLeft: 10,
 }));
 
@@ -49,8 +49,6 @@ export const BranchSwitcher = () => {
     <Fragment>
       <WithTooltip
         placement="top"
-        trigger="click"
-        closeOnClick
         tooltip={({ onHide }) => {
           return (
             <TooltipLinkList
