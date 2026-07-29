@@ -5,8 +5,6 @@ import {
   TooltipLinkList,
   WithTooltip,
 } from "storybook/internal/components";
-import { useParameter } from "storybook/manager-api";
-import { styled, type Theme } from "storybook/theming";
 import type { BranchSwitcherParameters } from "../constants";
 import {
   BRANCH_SWITCHER_ID,
@@ -16,10 +14,10 @@ import {
 import { BranchSwitcherState, state } from "../state";
 import { generateLink } from "../util/location";
 
-const IconButtonLabel = styled.div<{}>((props: { theme: Theme }) => ({
-  fontSize: props.theme.typography.size.s2 - 1,
-  marginLeft: 10,
-}));
+const useParameter =
+  ((globalThis as any).__STORYBOOK_API__?.useParameter as
+    | (<T>(key: string, defaultValue: T) => T)
+    | undefined) ?? ((_: string, defaultValue: unknown) => defaultValue);
 
 const hasMultipleBranches = (branchList: BranchSwitcherState["list"]) =>
   branchList.length > 1;
@@ -67,7 +65,9 @@ export const BranchSwitcher = () => {
       >
         <IconButton key={BRANCH_SWITCHER_ID} title="Branch" active={true}>
           <BranchIcon />
-          {currentBranch && <IconButtonLabel>{currentBranch}</IconButtonLabel>}
+          {currentBranch && (
+            <div style={{ fontSize: 11, marginLeft: 10 }}>{currentBranch}</div>
+          )}
         </IconButton>
       </WithTooltip>
     </Fragment>
