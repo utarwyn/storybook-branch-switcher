@@ -3,11 +3,12 @@ import { ADDON_ID, BRANCH_SWITCHER_ID, PARAM_KEY } from "./constants";
 
 describe("manager", () => {
   const addons = { register: vitest.fn(), add: vitest.fn() };
+  const types = { TOOL: "TOOL" };
 
-  (globalThis as any).__STORYBOOK_API__ = {
+  vitest.mock("storybook/manager-api", () => ({
     addons,
-    types: { TOOL: "TOOL" },
-  };
+    types,
+  }));
 
   beforeAll(async () => {
     await import("./manager");

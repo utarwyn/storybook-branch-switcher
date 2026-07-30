@@ -1,3 +1,3 @@
-import type { ProjectAnnotations, Renderer } from "storybook/internal/types";
+import type { Preview } from "storybook/types";
 
-export const initialGlobals: ProjectAnnotations<Renderer>["initialGlobals"] = {};
+export const initialGlobals: Preview["initialGlobals"] = {};

@@ -1,10 +1,7 @@
 import { BranchIcon } from "@storybook/icons";
 import React, { Fragment, useCallback } from "react";
-import {
-  IconButton,
-  TooltipLinkList,
-  WithTooltip,
-} from "storybook/internal/components";
+import { IconButton, TooltipLinkList, WithTooltip } from "storybook/components";
+import { useParameter } from "storybook/manager-api";
 import type { BranchSwitcherParameters } from "../constants";
 import {
   BRANCH_SWITCHER_ID,
@@ -13,11 +10,6 @@ import {
 } from "../constants";
 import { BranchSwitcherState, state } from "../state";
 import { generateLink } from "../util/location";
-
-const useParameter =
-  ((globalThis as any).__STORYBOOK_API__?.useParameter as
-    | (<T>(key: string, defaultValue: T) => T)
-    | undefined) ?? ((_: string, defaultValue: unknown) => defaultValue);
 
 const hasMultipleBranches = (branchList: BranchSwitcherState["list"]) =>
   branchList.length > 1;
