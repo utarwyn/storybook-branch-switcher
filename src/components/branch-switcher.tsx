@@ -1,6 +1,10 @@
 import { BranchIcon } from "@storybook/icons";
 import React, { Fragment, useCallback } from "react";
-import { IconButton, TooltipLinkList, WithTooltip } from "storybook/components";
+import {
+  IconButton,
+  TooltipLinkList,
+  WithTooltip,
+} from "storybook/internal/components";
 import { useParameter } from "storybook/manager-api";
 import type { BranchSwitcherParameters } from "../constants";
 import {

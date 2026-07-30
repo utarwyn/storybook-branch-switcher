@@ -1,15 +1,13 @@
 import { beforeAll, describe, expect, test, vitest } from "vitest";
 import { ADDON_ID, BRANCH_SWITCHER_ID, PARAM_KEY } from "./constants";
 
+const addons = { register: vitest.fn(), add: vitest.fn() };
+vitest.mock("storybook/manager-api", () => ({
+  addons,
+  types: { TOOL: "TOOL" },
+}));
+
 describe("manager", () => {
-  const addons = { register: vitest.fn(), add: vitest.fn() };
-  const types = { TOOL: "TOOL" };
-
-  vitest.mock("storybook/manager-api", () => ({
-    addons,
-    types,
-  }));
-
   beforeAll(async () => {
     await import("./manager");
   });
