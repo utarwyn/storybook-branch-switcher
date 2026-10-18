@@ -3,8 +3,6 @@
 import boxen from "boxen";
 import dedent from "dedent";
 import { readFile } from "node:fs/promises";
-import { globalPackages as globalManagerPackages } from "storybook/internal/manager/globals";
-import { globalPackages as globalPreviewPackages } from "storybook/internal/manager/globals";
 
 const packageJson = await readFile("./package.json", "utf8").then(JSON.parse);
 
@@ -61,9 +59,11 @@ if ((await $`cat README.md | grep -E ${readmeTestStrings}`.exitCode) == 0) {
  * Check that globalized packages are not incorrectly listed as peer dependencies
  */
 const peerDependencies = Object.keys(packageJson.peerDependencies || {});
-const globalPackages = [...globalManagerPackages, ...globalPreviewPackages];
 peerDependencies.forEach((dependency) => {
-  if (globalPackages.includes(dependency)) {
+  if (
+    dependency !== "storybook" &&
+    (dependency.startsWith("@storybook/") || dependency.startsWith("storybook/"))
+  ) {
     console.error(
       boxen(
         dedent`

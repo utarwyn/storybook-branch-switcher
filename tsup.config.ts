@@ -1,7 +1,5 @@
 import { defineConfig, type Options } from "tsup";
 import { readFile } from "node:fs/promises";
-import { globalPackages as globalManagerPackages } from "storybook/internal/manager/globals";
-import { globalPackages as globalPreviewPackages } from "storybook/internal/preview/globals";
 
 // The current browsers supported by Storybook v10
 const BROWSER_TARGET: Options["target"] = [
@@ -10,6 +8,15 @@ const BROWSER_TARGET: Options["target"] = [
   "firefox91",
 ];
 const NODE_TARGET: Options["target"] = ["node20"];
+const STORYBOOK_EXTERNALS = [
+  "storybook",
+  "storybook/*",
+  "@storybook/*",
+  "react",
+  "react/*",
+  "react-dom",
+  "react-dom/*",
+];
 
 type BundlerConfig = {
   bundler?: {
@@ -32,7 +39,7 @@ export default defineConfig(async (options) => {
   //   }
   // }
   const packageJson = (await readFile("./package.json", "utf8").then(
-    JSON.parse
+    JSON.parse,
   )) as BundlerConfig;
   const {
     bundler: {
@@ -66,7 +73,7 @@ export default defineConfig(async (options) => {
       format: ["esm"],
       target: [...BROWSER_TARGET, ...NODE_TARGET],
       platform: "neutral",
-      external: [...globalManagerPackages, ...globalPreviewPackages],
+      external: STORYBOOK_EXTERNALS,
     });
   }
 
@@ -80,7 +87,7 @@ export default defineConfig(async (options) => {
       format: ["esm"],
       target: BROWSER_TARGET,
       platform: "browser",
-      external: globalManagerPackages,
+      external: STORYBOOK_EXTERNALS,
     });
   }
 
@@ -97,7 +104,7 @@ export default defineConfig(async (options) => {
       format: ["esm"],
       target: BROWSER_TARGET,
       platform: "browser",
-      external: globalPreviewPackages,
+      external: STORYBOOK_EXTERNALS,
     });
   }
 
