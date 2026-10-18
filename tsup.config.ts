@@ -8,7 +8,15 @@ const BROWSER_TARGET: Options["target"] = [
   "firefox91",
 ];
 const NODE_TARGET: Options["target"] = ["node20"];
-const STORYBOOK_EXTERNALS = ["storybook", "storybook/*", "@storybook/*"];
+const STORYBOOK_EXTERNALS = [
+  "storybook",
+  "storybook/*",
+  "@storybook/*",
+  "react",
+  "react/*",
+  "react-dom",
+  "react-dom/*",
+];
 
 type BundlerConfig = {
   bundler?: {
@@ -31,7 +39,7 @@ export default defineConfig(async (options) => {
   //   }
   // }
   const packageJson = (await readFile("./package.json", "utf8").then(
-    JSON.parse
+    JSON.parse,
   )) as BundlerConfig;
   const {
     bundler: {
