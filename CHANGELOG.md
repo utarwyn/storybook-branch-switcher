@@ -1,3 +1,20 @@
+# v0.7.0 (Sun Oct 18 2026)
+
+#### 🚀 Enhancement
+
+- chore: upgrade dependencies to Storybook 10 and latest versions [#22](https://github.com/utarwyn/storybook-branch-switcher/pull/22) ([@Copilot](https://github.com/Copilot) [@utarwyn](https://github.com/utarwyn))
+
+#### 🐛 Bug Fix
+
+- Setup npm trusted publishing [#21](https://github.com/utarwyn/storybook-branch-switcher/pull/21) ([@utarwyn](https://github.com/utarwyn))
+
+#### Authors: 2
+
+- [@Copilot](https://github.com/Copilot)
+- Maxime Malgorn ([@utarwyn](https://github.com/utarwyn))
+
+---
+
 # v0.6.1 (Wed Dec 31 2025)
 
 #### 🐛 Bug Fix
